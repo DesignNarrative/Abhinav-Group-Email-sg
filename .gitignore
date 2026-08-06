@@ -1,0 +1,10 @@
+# Excel temporary lock files
+~$*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc

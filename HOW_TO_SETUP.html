@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Abhinav Group — Email Signature Setup Guide</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #1b8ecb;
+      --blue-dark:  #0d6ea3;
+      --blue-light: #e8f5fc;
+      --text:       #1e2d3d;
+      --muted:      #6b7c93;
+      --border:     #dde5ef;
+      --bg:         #f4f8fb;
+      --white:      #ffffff;
+      --success:    #22c55e;
+      --warning:    #f59e0b;
+      --radius:     12px;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── Hero Header ── */
+    .hero {
+      background: linear-gradient(135deg, #1b8ecb 0%, #0a527a 100%);
+      color: #fff;
+      padding: 50px 40px 44px;
+      text-align: center;
+    }
+    .hero-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 16px;
+      opacity: .8;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── Navigation tabs ── */
+    .tabs-wrap {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .tabs {
+      display: flex;
+      max-width: 860px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+    .tab {
+      padding: 14px 22px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .tab:hover, .tab.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    /* ── Page Layout ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── Section ── */
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.05);
+    }
+    .card h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 18px 0 8px;
+    }
+
+    /* ── Step list ── */
+    .steps { counter-reset: steps; list-style: none; }
+    .steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .steps li::before {
+      content: counter(steps);
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .steps li .step-body { flex: 1; }
+    .steps li .step-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .steps li .step-desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ── Highlight box ── */
+    .box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    .box.blue   { background: var(--blue-light); border-left: 4px solid var(--blue); color: #0d4f70; }
+    .box.green  { background: #f0fdf4;            border-left: 4px solid var(--success); color: #166534; }
+    .box.yellow { background: #fffbeb;            border-left: 4px solid var(--warning); color: #92400e; }
+
+    .box strong { display: block; margin-bottom: 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ── Code / path ── */
+    code {
+      background: #f0f4f8;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--blue-dark);
+    }
+
+    /* ── Tag badges ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .badge.gmail   { background: #fce8e6; color: #c5221f; }
+    .badge.outlook { background: #e8f0fe; color: #1a73e8; }
+    .badge.apple   { background: #f0f0f0; color: #333; }
+
+    /* ── Table ── */
+    table.info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    table.info-table th {
+      background: var(--blue);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+    table.info-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.info-table tr:last-child td { border-bottom: none; }
+    table.info-table tr:nth-child(even) td { background: #f9fbfd; }
+
+    /* ── File structure tree ── */
+    .tree {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      background: #1e2d3d;
+      color: #a8d8f0;
+      border-radius: 10px;
+      padding: 20px 24px;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+    .tree .folder { color: #ffd97d; }
+    .tree .file   { color: #b0f0b0; }
+    .tree .desc   { color: #7a9ab0; }
+
+    /* ── Quick reference box ── */
+    .qref {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    @media (max-width: 600px) {
+      .qref { grid-template-columns: 1fr; }
+    }
+    .qref-item {
+      background: var(--blue-light);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .qref-item .label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--blue);
+      margin-bottom: 5px;
+    }
+    .qref-item .value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ── Social icon preview ── */
+    .social-row {
+      display: flex;
+      gap: 14px;
+      margin: 12px 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .social-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-web  { background: #1b8ecb; }
+    .dot-fb   { background: #1877f2; }
+    .dot-ig   { background: #e1306c; }
+    .dot-li   { background: #0a66c2; }
+    .dot-yt   { background: #ff0000; }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+    /* ── Print ── */
+    @media print {
+      .tabs-wrap, .tab { display: none; }
+      .section { display: block !important; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-logo">Abhinav Group</div>
+  <h1>Email Signature Setup Guide</h1>
+  <p>Everything you need to set up your professional email signature — step by step, no tech skills required.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION TABS
+     ══════════════════════════════════════════ -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <a class="tab active" href="#" onclick="show('overview', this)">Overview</a>
+    <a class="tab" href="#" onclick="show('update', this)">Add / Update / Remove</a>
+    <a class="tab" href="#" onclick="show('gmail', this)">Gmail Setup</a>
+    <a class="tab" href="#" onclick="show('outlook', this)">Outlook Setup</a>
+    <a class="tab" href="#" onclick="show('mobile', this)">Mobile (Phone)</a>
+    <a class="tab" href="#" onclick="show('files', this)">File Structure</a>
+    <a class="tab" href="#" onclick="show('faq', this)">FAQ</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+     ══════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- ── OVERVIEW ─────────────────────────────────────────── -->
+  <div id="overview" class="section active">
+
+    <div class="card">
+      <h2>What is this system?</h2>
+      <p>This is the <strong>Abhinav Group Email Signature Generator</strong>. It automatically creates a professional HTML email signature for every employee, matching the official Abhinav Group signature design — with social media icons added below.</p>
+
+      <div class="box blue" style="margin-top:16px;">
+        <strong>What each signature includes:</strong>
+        &bull; Company logo &bull; Employee name &amp; designation &bull; Phone, email, website
+        &bull; Company address &bull; Clickable social icons (Website, Facebook, Instagram, LinkedIn, YouTube)
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>How to generate ALL signatures (for admins)</h2>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open the Email Signature folder</div>
+            <div class="step-desc">Navigate to the folder where this file is located on your computer.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Double-click <code>run_me.bat</code></div>
+            <div class="step-desc">A black window will appear and automatically generate all signatures. It closes when done and opens a preview in your browser.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Check the preview</div>
+            <div class="step-desc">Your browser will open <code>preview_all.html</code> showing all signatures. Verify each one looks correct.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Distribute individual files</div>
+            <div class="step-desc">Each employee's signature is saved as <code>output\EmployeeName.html</code>. Share the correct file with each person and they follow the setup steps below.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="box green">
+        <strong>Important:</strong>
+        Every time you run <code>run_me.bat</code>, it reads the latest data from Excel and regenerates all signatures. This means ALL updates (name, phone, designation changes) are automatically applied.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Social media links (always current)</h2>
+      <div class="social-row">
+        <div class="social-item"><div class="social-dot dot-web"></div> Website</div>
+        <div class="social-item"><div class="social-dot dot-fb"></div> Facebook</div>
+        <div class="social-item"><div class="social-dot dot-ig"></div> Instagram</div>
+        <div class="social-item"><div class="social-dot dot-li"></div> LinkedIn</div>
+        <div class="social-item"><div class="social-dot dot-yt"></div> YouTube</div>
+      </div>
+      <p style="color:var(--muted);font-size:14px;">All icons in every signature link to the official Abhinav Group pages. If a link ever changes, update it in <code>generate_signatures.py</code> at the top (SOCIAL_LINKS section) and run <code>run_me.bat</code> again.</p>
+    </div>
+
+  </div><!-- /overview -->
+
+  <!-- ── ADD / UPDATE / REMOVE ─────────────────────────────── -->
+  <div id="update" class="section">
+
+    <div class="card">
+      <h2>Add a new employee</h2>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open <code>employees\employees.xlsx</code></div>
+            <div class="step-desc">Double-click the file to open it in Microsoft Excel.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Scroll to the last row of data</div>
+            <div class="step-desc">Find the last employee entry. Click on the very next empty row below it.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Fill in all 4 columns</div>
+            <div class="step-desc">
+              <table class="info-table" style="margin-top:8px;">
+                <tr><th>Column</th><th>What to enter</th><th>Example</th></tr>
+                <tr><td><strong>A — Name</strong></td><td>Full name of the employee</td><td>Priya Sharma</td></tr>
+                <tr><td><strong>B — Designation</strong></td><td>Job title / position</td><td>Sales Executive</td></tr>
+                <tr><td><strong>C — Phone</strong></td><td>Phone number (any format is fine)</td><td>+91 98765 43210</td></tr>
+                <tr><td><strong>D — Email</strong></td><td>Work email address</td><td>priya@abhinavinfra.com</td></tr>
+              </table>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Save the file (Ctrl + S) and close Excel</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Double-click <code>run_me.bat</code></div>
+            <div class="step-desc">The new employee's signature will be generated automatically in the <code>output\</code> folder.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Update an existing employee's details</h2>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open <code>employees\employees.xlsx</code></div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Find the employee's row</div>
+            <div class="step-desc">Scroll through the list or use Ctrl+F to search.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Edit the cell(s) that changed</div>
+            <div class="step-desc">Click on the cell, delete the old value, type the new one. You can change name, designation, phone, or email.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Save (Ctrl + S) and close Excel</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Double-click <code>run_me.bat</code></div>
+            <div class="step-desc">The signature file is overwritten automatically with the new details. Share the updated file with the employee.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="box yellow">
+        <strong>Note:</strong>
+        If the employee's NAME changed, their old <code>.html</code> file in <code>output\</code> will remain. You can safely delete it — the new one with the updated name will be there.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Remove an employee</h2>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open <code>employees\employees.xlsx</code></div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Right-click on their row number and select "Delete"</div>
+            <div class="step-desc">This removes the entire row. Do not just clear the cells — delete the whole row.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Save and close Excel, then run <code>run_me.bat</code></div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Delete their old signature file from <code>output\</code></div>
+            <div class="step-desc">Find <code>output\EmployeeName.html</code> and delete it manually.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /update -->
+
+  <!-- ── GMAIL SETUP ───────────────────────────────────────── -->
+  <div id="gmail" class="section">
+
+    <div class="card">
+      <h2><span class="badge gmail">Gmail</span> Setting up your signature</h2>
+      <div class="box blue">
+        <strong>Before you start:</strong>
+        Get your signature file from your admin. It will be named something like <code>YourName.html</code> and is located in the <code>output\</code> folder.
+      </div>
+
+      <h3>Method 1 — Copy & Paste (Recommended — Works on all devices)</h3>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open your signature file in a web browser</div>
+            <div class="step-desc">Double-click your <code>output\YourName.html</code> file. It will open in Chrome, Edge, or Firefox.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Select ALL and copy</div>
+            <div class="step-desc">Press <strong>Ctrl + A</strong> (select all), then <strong>Ctrl + C</strong> (copy). You should see the entire signature highlighted in blue.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open Gmail Settings</div>
+            <div class="step-desc">Go to <strong>gmail.com</strong> &rarr; Click the gear icon (&#9881;) in top-right &rarr; Click <strong>"See all settings"</strong>.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Go to the Signature section</div>
+            <div class="step-desc">Stay on the <strong>General</strong> tab &rarr; Scroll down until you see the <strong>"Signature"</strong> section.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Create a new signature</div>
+            <div class="step-desc">Click <strong>"+ Create new"</strong> &rarr; Give it a name like "Abhinav Group" &rarr; Click <strong>Create</strong>.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Paste your signature</div>
+            <div class="step-desc">Click inside the signature text box &rarr; Press <strong>Ctrl + V</strong> to paste. Your signature with logo and icons should appear.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Set as default and save</div>
+            <div class="step-desc">Under "Signature defaults", select your signature for both "For new emails" and "For replies/forwards" &rarr; Scroll to the bottom &rarr; Click <strong>"Save Changes"</strong>.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="box green">
+        <strong>Done!</strong> Send yourself a test email to verify the signature appears correctly with all social icons.
+      </div>
+    </div>
+
+  </div><!-- /gmail -->
+
+  <!-- ── OUTLOOK SETUP ─────────────────────────────────────── -->
+  <div id="outlook" class="section">
+
+    <div class="card">
+      <h2><span class="badge outlook">Outlook</span> Setting up your signature (Desktop)</h2>
+
+      <h3>For Outlook 2016, 2019, 2021 and Microsoft 365</h3>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open your signature HTML file in a browser</div>
+            <div class="step-desc">Double-click <code>output\YourName.html</code> — it opens in Chrome or Edge.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Copy the signature (Ctrl + A, then Ctrl + C)</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open Outlook &rarr; Go to File &rarr; Options</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Click "Mail" &rarr; then "Signatures..."</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Click "New", name it "Abhinav Group", click OK</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">In the signature editing box, paste with Ctrl + V</div>
+            <div class="step-desc">Your signature should appear with the logo, contact info, and social icons.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Set as default for New messages and Replies</div>
+            <div class="step-desc">On the right side, under "Choose default signature", select "Abhinav Group" for both dropdowns.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Click OK to save</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="box yellow">
+        <strong>Outlook Note:</strong>
+        Outlook may show a security warning about images. Click "Enable" or "Always allow" to display the signature correctly. Since all images are embedded directly in the file (no external links), this is completely safe.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge outlook">Outlook</span> Setting up on Outlook Web (Browser)</h2>
+      <ul class="steps">
+        <li><div class="step-body"><div class="step-title">Go to outlook.com or office.com and sign in</div></div></li>
+        <li><div class="step-body"><div class="step-title">Click the gear icon (Settings) &rarr; "View all Outlook settings"</div></div></li>
+        <li><div class="step-body"><div class="step-title">Go to Mail &rarr; Compose and reply &rarr; Email signature</div></div></li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open your HTML file in a browser, copy it (Ctrl+A, Ctrl+C), paste here (Ctrl+V)</div>
+          </div>
+        </li>
+        <li><div class="step-body"><div class="step-title">Enable "Automatically include my signature" for new messages and replies</div></div></li>
+        <li><div class="step-body"><div class="step-title">Click Save</div></div></li>
+      </ul>
+    </div>
+
+  </div><!-- /outlook -->
+
+  <!-- ── MOBILE SETUP ──────────────────────────────────────── -->
+  <div id="mobile" class="section">
+
+    <div class="card">
+      <h2>Setting up signature on Mobile (Android / iPhone)</h2>
+
+      <div class="box yellow">
+        <strong>Important note about mobile email apps:</strong>
+        Most mobile email apps (Gmail app, Outlook app) have limited support for HTML signatures with images. The recommended approach is to set up the signature on your desktop/laptop first, and the mobile app will sync it automatically.
+      </div>
+
+      <h3>Gmail App (Android &amp; iPhone) — Recommended approach</h3>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Set up the signature on your desktop Gmail first</div>
+            <div class="step-desc">Follow the Gmail steps in the previous tab on a computer. The signature will then appear on desktop.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">On your phone — Gmail app uses a simple text signature</div>
+            <div class="step-desc">Open Gmail app &rarr; Menu (three lines) &rarr; Settings &rarr; Your email &rarr; Signature settings. Here you can only add plain text. Type your name, title, and phone number as plain text for mobile replies.</div>
+          </div>
+        </li>
+      </ul>
+
+      <h3>Outlook Mobile App</h3>
+      <ul class="steps">
+        <li>
+          <div class="step-body">
+            <div class="step-title">Open Outlook app &rarr; Tap your profile picture &rarr; Settings (gear icon)</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Scroll down and tap "Signature"</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <div class="step-title">Type a simple text signature for mobile</div>
+            <div class="step-desc">Example:<br><em>Avdhut Chakradhar<br>Purchase Manager, Abhinav Group<br>+91 72195 50051<br>www.abhinavgroup.co.in</em></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="box blue">
+        <strong>Best Practice:</strong>
+        Use the full HTML signature (with logo and icons) for emails sent from your laptop/desktop. For emails replied from your phone, a simple text signature is standard practice — recipients understand this.
+      </div>
+    </div>
+
+  </div><!-- /mobile -->
+
+  <!-- ── FILE STRUCTURE ────────────────────────────────────── -->
+  <div id="files" class="section">
+
+    <div class="card">
+      <h2>Project File Structure</h2>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px;">Here is what each file and folder does:</p>
+      <div class="tree">
+<span class="folder">Email Signature/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">run_me.bat</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; DOUBLE-CLICK THIS to generate all signatures</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">generate_signatures.py</span> &nbsp;<span class="desc">&#8592; The main program (do not edit unless you know Python)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">preview_all.html</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; Preview of ALL employee signatures in your browser</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">HOW_TO_SETUP.html</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; This guide (you are reading it)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">requirements.txt</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; Python package list (reference only)</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="folder">employees/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="file">employees.xlsx</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; ALL EMPLOYEE DATA LIVES HERE — edit this to add/update/remove</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="folder">images/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="file">logo.jpg</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; Abhinav Group circular logo — replace to update logo</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="folder">icons/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">website.png</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">facebook.png</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">instagram.jpg</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">linkedin.png</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="file">youtube.png</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; Social media icons (replace image to change icon appearance)</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="folder">output/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">Avdhut_Chakradhar.html</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">Monica_Mashale.html</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="file">...</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">&#8592; One file per employee — share the correct file with each person</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Quick Reference</h2>
+      <div class="qref">
+        <div class="qref-item">
+          <div class="label">To add an employee</div>
+          <div class="value">Add row in Excel &rarr; run run_me.bat</div>
+        </div>
+        <div class="qref-item">
+          <div class="label">To update details</div>
+          <div class="value">Edit cell in Excel &rarr; run run_me.bat</div>
+        </div>
+        <div class="qref-item">
+          <div class="label">To remove an employee</div>
+          <div class="value">Delete row in Excel &rarr; run run_me.bat &rarr; delete their .html file</div>
+        </div>
+        <div class="qref-item">
+          <div class="label">To preview all signatures</div>
+          <div class="value">Open preview_all.html in browser</div>
+        </div>
+        <div class="qref-item">
+          <div class="label">Each signature file</div>
+          <div class="value">output\EmployeeName.html</div>
+        </div>
+        <div class="qref-item">
+          <div class="label">Employee data file</div>
+          <div class="value">employees\employees.xlsx</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /files -->
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <div id="faq" class="section">
+
+    <div class="card">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Q: The logo or icons are not showing up in Gmail</h3>
+      <p>All images are embedded directly inside the HTML file (no external links), so they should always appear. Make sure you copied the entire signature from the browser (Ctrl+A, Ctrl+C) and pasted it in Gmail's signature editor.</p>
+
+      <hr/>
+
+      <h3>Q: My signature looks different in Outlook vs Gmail</h3>
+      <p>This is normal. Outlook and Gmail render HTML slightly differently. The signature is designed to look correct in both. Minor spacing differences are expected and acceptable.</p>
+
+      <hr/>
+
+      <h3>Q: Can I edit the signature myself?</h3>
+      <p>No — do not edit the HTML file manually. All changes should be made in the Excel file (<code>employees\employees.xlsx</code>), then run <code>run_me.bat</code> to regenerate. This keeps all signatures consistent and correct.</p>
+
+      <hr/>
+
+      <h3>Q: What if someone leaves the company?</h3>
+      <p>Delete their row from the Excel file &rarr; run <code>run_me.bat</code> &rarr; manually delete their <code>.html</code> file from the <code>output\</code> folder.</p>
+
+      <hr/>
+
+      <h3>Q: What if a social media link changes?</h3>
+      <p>Open <code>generate_signatures.py</code> in Notepad. Find the <strong>SOCIAL_LINKS</strong> section near the top. Update the URL for the changed platform. Save the file. Run <code>run_me.bat</code>.</p>
+
+      <hr/>
+
+      <h3>Q: Can this work without internet?</h3>
+      <p>Yes — completely! All images are embedded in the HTML files. No internet connection is needed to generate or use the signatures.</p>
+
+      <hr/>
+
+      <h3>Q: The <code>run_me.bat</code> says "Python not found"</h3>
+      <p>You need to install Python once. Visit <strong>https://www.python.org/downloads/</strong>, download the latest version, and during installation, check the box that says <strong>"Add Python to PATH"</strong>. Then restart your computer and try again.</p>
+
+      <hr/>
+
+      <h3>Q: Do I need to set this up again every time?</h3>
+      <p>No! Once a signature is set up in Gmail or Outlook, it stays there permanently. You only need to update it if details change (which is very easy — just redo the paste step with the new file).</p>
+    </div>
+
+  </div><!-- /faq -->
+
+</div><!-- /page -->
+
+<script>
+  function show(sectionId, tabEl) {
+    event.preventDefault();
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    // Remove active from all tabs
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    // Show selected
+    document.getElementById(sectionId).classList.add('active');
+    tabEl.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
