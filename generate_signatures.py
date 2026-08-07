@@ -253,6 +253,16 @@ def build_signature_html(
     ephone = html_module.escape(phone)
     eemail = html_module.escape(email.strip())
 
+    # ── Thanks & Regards check for Omkar Mule ─────────────────────────────────
+    thanks_header = ""
+    if name.strip().lower() == "omkar mule":
+        thanks_header = (
+            '<div style="margin:0 0 10px 0; font-size:12px; color:#555555; '
+            'font-family:Arial,Helvetica,sans-serif; font-weight:bold;">'
+            'Thanks &amp; Regards,'
+            '</div>\n      '
+        )
+
     # ── Social icons cells ────────────────────────────────────────────────────
     social_cells = ""
     for key in SOCIAL_ORDER:
@@ -262,14 +272,14 @@ def build_signature_html(
         if not img:
             continue
         social_cells += (
-            f'\n                <td style="padding:0 8px 0 0;'
+            f'\n                <td style="padding:0 6px 0 0;'
             f'mso-table-lspace:0pt;mso-table-rspace:0pt;">'
             f'<a href="{link}" target="_blank" rel="noopener noreferrer"'
             f' style="text-decoration:none;display:inline-block;border:0;">'
-            f'<img src="{img}" width="28" height="28" alt="{label}"'
+            f'<img src="{img}" width="22" height="22" alt="{label}"'
             f' title="{label}"'
-            f' style="display:block;border:0;border-radius:5px;'
-            f'width:28px;height:28px;mso-border-alt:none;" />'
+            f' style="display:block;border:0;border-radius:4px;'
+            f'width:22px;height:22px;mso-border-alt:none;" />'
             f'</a></td>'
         )
 
@@ -307,21 +317,21 @@ def build_signature_html(
               mso-table-lspace:0pt;mso-table-rspace:0pt;
               font-family:Arial,Helvetica,sans-serif;
               background-color:#ffffff;
-              max-width:580px;width:580px;">
+              max-width:450px;width:450px;">
 
   <tr>
 
     <!-- ══ LOGO CELL ══════════════════════════════════════════ -->
-    <td width="145" valign="middle"
-        style="width:145px;vertical-align:middle;
-               padding:12px 0 12px 0;
+    <td width="110" valign="middle"
+        style="width:110px;vertical-align:middle;
+               padding:10px 0 10px 0;
                mso-table-lspace:0pt;mso-table-rspace:0pt;">
       <img src="{logo_b64}"
-           width="128" height="128"
+           width="96" height="96"
            alt="Abhinav Group"
            title="Abhinav Group"
            style="display:block;border:0;
-                  width:128px;height:128px;
+                  width:96px;height:96px;
                   mso-border-alt:none;" />
     </td>
 
@@ -330,31 +340,32 @@ def build_signature_html(
         style="width:2px;background-color:#1b8ecb;padding:0;
                mso-table-lspace:0pt;mso-table-rspace:0pt;">
       <!--[if mso]>
-      <v:rect style="width:2px;height:152px;" fillcolor="#1b8ecb" stroked="f">
+      <v:rect style="width:2px;height:116px;" fillcolor="#1b8ecb" stroked="f">
         <v:fill type="solid" color="#1b8ecb"/>
       </v:rect>
       <![endif]-->
       <!--[if !mso]><!-->
-      <div style="width:2px;min-height:152px;height:100%;
+      <div style="width:2px;min-height:116px;height:100%;
                   background-color:#1b8ecb;
                   font-size:1px;line-height:1px;">&nbsp;</div>
       <!--<![endif]-->
     </td>
 
     <!-- ══ HORIZONTAL SPACER ══════════════════════════════════ -->
-    <td width="18"
-        style="width:18px;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+    <td width="15"
+        style="width:15px;mso-table-lspace:0pt;mso-table-rspace:0pt;">
       &nbsp;
     </td>
 
     <!-- ══ CONTENT CELL ═══════════════════════════════════════ -->
     <td valign="top"
-        style="vertical-align:top;padding:10px 12px 10px 0;
+        style="vertical-align:top;padding:6px 10px 6px 0;
                mso-table-lspace:0pt;mso-table-rspace:0pt;">
 
-      <!-- NAME ─────────────────────────────────────────────── -->
+      <!-- THANKS & REGARDS (Omkar Mule only) ────────────────── -->
+      {thanks_header}<!-- NAME ─────────────────────────────────────────────── -->
       <div style="margin:0 0 2px 0;
-                  font-size:22px;font-weight:700;
+                  font-size:17px;font-weight:700;
                   color:#1b8ecb;line-height:1.2;
                   font-family:Arial,Helvetica,sans-serif;
                   mso-line-height-rule:exactly;">
@@ -362,8 +373,8 @@ def build_signature_html(
       </div>
 
       <!-- DESIGNATION ──────────────────────────────────────── -->
-      <div style="margin:0 0 11px 0;
-                  font-size:12.5px;color:#666666;font-weight:400;
+      <div style="margin:0 0 8px 0;
+                  font-size:11px;color:#666666;font-weight:400;
                   line-height:1.4;
                   font-family:Arial,Helvetica,sans-serif;
                   mso-line-height-rule:exactly;">
@@ -372,19 +383,19 @@ def build_signature_html(
 
       <!-- PHONE ────────────────────────────────────────────── -->
       <table cellpadding="0" cellspacing="0" border="0" role="presentation"
-             style="border-collapse:collapse;margin:0 0 5px 0;
+             style="border-collapse:collapse;margin:0 0 4px 0;
                     mso-table-lspace:0pt;mso-table-rspace:0pt;">
         <tr>
-          <td width="22" valign="middle"
-              style="width:22px;padding:0 7px 0 0;vertical-align:middle;
+          <td width="18" valign="middle"
+              style="width:18px;padding:0 5px 0 0;vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
-            <img src="{PHONE_ICON_URI}" width="15" height="15" alt="Phone"
-                 style="display:block;border:0;width:15px;height:15px;" />
+            <img src="{PHONE_ICON_URI}" width="13" height="13" alt="Phone"
+                 style="display:block;border:0;width:13px;height:13px;" />
           </td>
           <td valign="middle"
               style="vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
-            <span style="font-size:12.5px;color:#333333;
+            <span style="font-size:11px;color:#333333;
                          font-family:Arial,Helvetica,sans-serif;">
               {ephone}
             </span>
@@ -394,20 +405,20 @@ def build_signature_html(
 
       <!-- EMAIL ────────────────────────────────────────────── -->
       <table cellpadding="0" cellspacing="0" border="0" role="presentation"
-             style="border-collapse:collapse;margin:0 0 5px 0;
+             style="border-collapse:collapse;margin:0 0 4px 0;
                     mso-table-lspace:0pt;mso-table-rspace:0pt;">
         <tr>
-          <td width="22" valign="middle"
-              style="width:22px;padding:0 7px 0 0;vertical-align:middle;
+          <td width="18" valign="middle"
+              style="width:18px;padding:0 5px 0 0;vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
-            <img src="{EMAIL_ICON_URI}" width="15" height="15" alt="Email"
-                 style="display:block;border:0;width:15px;height:15px;" />
+            <img src="{EMAIL_ICON_URI}" width="13" height="13" alt="Email"
+                 style="display:block;border:0;width:13px;height:13px;" />
           </td>
           <td valign="middle"
               style="vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
             <a href="mailto:{eemail}"
-               style="font-size:12.5px;color:#333333;text-decoration:none;
+               style="font-size:11px;color:#333333;text-decoration:none;
                       font-family:Arial,Helvetica,sans-serif;">
               {eemail}
             </a>
@@ -417,23 +428,23 @@ def build_signature_html(
 
       <!-- WEBSITE ──────────────────────────────────────────── -->
       <table cellpadding="0" cellspacing="0" border="0" role="presentation"
-             style="border-collapse:collapse;margin:0 0 12px 0;
+             style="border-collapse:collapse;margin:0 0 8px 0;
                     mso-table-lspace:0pt;mso-table-rspace:0pt;">
         <tr>
-          <td width="22" valign="middle"
-              style="width:22px;padding:0 7px 0 0;vertical-align:middle;
+          <td width="18" valign="middle"
+              style="width:18px;padding:0 5px 0 0;vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
-            <img src="{GLOBE_ICON_URI}" width="15" height="15" alt="Website"
-                 style="display:block;border:0;width:15px;height:15px;" />
+            <img src="{GLOBE_ICON_URI}" width="13" height="13" alt="Website"
+                 style="display:block;border:0;width:13px;height:13px;" />
           </td>
           <td valign="middle"
               style="vertical-align:middle;
                      mso-table-lspace:0pt;mso-table-rspace:0pt;">
             <a href="https://abhinavgroup.co.in/"
                target="_blank" rel="noopener noreferrer"
-               style="font-size:12.5px;color:#333333;text-decoration:none;
+               style="font-size:11px;color:#333333;text-decoration:none;
                       font-family:Arial,Helvetica,sans-serif;">
-              www.abhinavgroup.co.in
+               www.abhinavgroup.co.in
             </a>
           </td>
         </tr>
@@ -441,7 +452,7 @@ def build_signature_html(
 
       <!-- HORIZONTAL RULE ──────────────────────────────────── -->
       <table cellpadding="0" cellspacing="0" border="0" role="presentation"
-             style="border-collapse:collapse;margin:0 0 8px 0;width:100%;
+             style="border-collapse:collapse;margin:0 0 6px 0;width:100%;
                     mso-table-lspace:0pt;mso-table-rspace:0pt;">
         <tr>
           <td height="1" bgcolor="#e0e0e0"
@@ -454,10 +465,10 @@ def build_signature_html(
       </table>
 
       <!-- ADDRESS ──────────────────────────────────────────── -->
-      <div style="font-size:12px;color:#555555;line-height:1.5;
+      <div style="font-size:10.5px;color:#555555;line-height:1.5;
                   font-weight:bold;
                   font-family:Arial,Helvetica,sans-serif;
-                  margin:0 0 10px 0;
+                  margin:0 0 8px 0;
                   mso-line-height-rule:exactly;">
         {ADDRESS}
       </div>
